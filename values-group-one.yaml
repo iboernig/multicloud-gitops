@@ -10,11 +10,13 @@ clusterGroup:
     - config-demo
     - hello-world
     - golang-external-secrets
+    - pacman-demo
   subscriptions:
   projects:
     - eso
     - config-demo
     - hello-world
+    - pacman-demo
   applications:
     golang-external-secrets:
       name: golang-external-secrets
@@ -31,6 +33,10 @@ clusterGroup:
       namespace: hello-world
       project: hello-world
       path: charts/all/hello-world
+    pacman-demo:
+      namespace: pacman-demo
+      project: pacman-demo
+      path: charts/all/pacman-demo  
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule

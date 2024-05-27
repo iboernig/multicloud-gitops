@@ -1,0 +1,14 @@
+---
+#TODO use in templates
+restic:
+  secret: "restic-secret"
+  repository: "gs://restic-backups/demo-pacman-backup"
+  cacheCapacity:
+    source: 1Gi
+    dest: 1Gi
+pvc:
+  storage: 8Gi 
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+  path: "secret/data/global/gcp-restic-secret"

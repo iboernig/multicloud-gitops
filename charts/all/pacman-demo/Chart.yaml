@@ -1,0 +1,6 @@
+apiVersion: v2
+description: A Helm chart for a simple pacman game that stores the scores to a Mongo database
+keywords:
+- pattern
+name: pacman-demo
+version: 0.0.1
