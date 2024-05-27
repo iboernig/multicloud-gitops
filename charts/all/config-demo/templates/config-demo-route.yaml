@@ -11,4 +11,7 @@ spec:
     kind: Service
     name: config-demo
     weight: 100
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
   wildcardPolicy: None
