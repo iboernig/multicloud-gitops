@@ -71,6 +71,7 @@ clusterGroup:
       project: hello-world
       path: charts/all/hello-world
     pacman-demo:
+      name: pacman-demo
       namespace: pacman-demo
       project: pacman-demo
       path: charts/all/pacman-demo  
