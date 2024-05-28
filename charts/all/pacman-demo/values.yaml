@@ -2,7 +2,8 @@
 #TODO use in templates
 restic:
   secret: "restic-secret"
-  repository: "gs://restic-backups-rw8ns/demo-pacman-mongodb-backup"
+  #repository: "gs://restic-backups-rw8ns/demo-pacman-mongodb-backup"
+  repository: "gs://restic-backups-rw8ns"
   cacheCapacity:
     source: 1Gi
     dest: 1Gi
