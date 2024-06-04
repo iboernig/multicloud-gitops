@@ -2,7 +2,19 @@
 image: quay.io/rh_ee_fcharett/todo-demo-jws
 replicas: 2
 database:
-  image: registry.redhat.io/rhel8/postgresql-15:latest
+  image: registry.redhat.io/rhel8/postgresql-16:latest
   name: todos
   user: jws
   password: jws
+restic:
+  secret: "restic-secret"
+  repository: "gs:restic-backups-rw8ns:/demo-todos-postgres-backup"
+  cacheCapacity:
+    source: 1Gi
+    dest: 1Gi
+pvc:
+  storage: 8Gi 
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+  path: "secret/data/global/gcp-restic-secret"
