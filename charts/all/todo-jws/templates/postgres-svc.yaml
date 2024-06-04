@@ -6,7 +6,7 @@ metadata:
   name: todos-database
 spec:
   ports:
-  - name: 8080-tcp
+  - name: 5432-tcp
     port: 5432
     targetPort: 5432
     protocol: TCP
