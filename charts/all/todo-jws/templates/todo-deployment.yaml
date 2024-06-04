@@ -2,18 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    application: todo-jws
+    name: todo-jws
   name: todo-jws
 spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      deployment: todo-jws
+      name: todo-jws
   template:
     metadata:
       labels:
-        app: todo-jws
-        deployment: todo-jws
+        name: todo-jws
       name: todo-jws
     spec:
       containers:
