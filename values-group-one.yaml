@@ -7,13 +7,23 @@ clusterGroup:
   name: group-one
   isHubCluster: false
   namespaces:
+    - imperative
     - config-demo
     - hello-world
     - golang-external-secrets
     - pacman-demo
     - todo-jws
   subscriptions:
+    volsync:
+      name: volsync-product
+      namespace: openshift-operators
+      channel: stable
+    web-terminal:
+      name: web-terminal
+      namespace: openshift-operators
+      channel: fast  
   projects:
+    - imperative
     - eso
     - config-demo
     - hello-world
