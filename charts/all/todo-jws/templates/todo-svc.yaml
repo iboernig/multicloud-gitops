@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: todo-jws
+  name: todo-jws
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  internalTrafficPolicy: Cluster
+  selector:
+    app: todo-jws
+    deploymentconfig: todo-jws
+  sessionAffinity: None
+  type: ClusterIP

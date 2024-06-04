@@ -1,0 +1,8 @@
+---
+image: quay.io/rh_ee_fcharett/todo-demo-jws
+replicas: 2
+database:
+  image: registry.redhat.io/rhel8/postgresql-15:latest
+  name: todos
+  user: jws
+  password: jws

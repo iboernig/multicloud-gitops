@@ -1,0 +1,46 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: todos-database
+  labels:
+    application: todos-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: todos-database
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        deployment: todos-database
+    spec:
+      containers:
+        - name: postgresql
+          image: {{ .Values.database.image }}
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          env:
+            - name: POSTGRESQL_DATABASE
+              value: {{ .Values.database.name }}
+            - name: POSTGRESQL_PASSWORD
+              value: {{ .Values.database.password }}
+            - name: POSTGRESQL_USER
+              value: {{ .Values.database.user }}
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

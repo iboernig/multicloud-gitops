@@ -11,12 +11,14 @@ clusterGroup:
     - hello-world
     - golang-external-secrets
     - pacman-demo
+    - todo-jws
   subscriptions:
   projects:
     - eso
     - config-demo
     - hello-world
     - pacman-demo
+    - todo-jws
   applications:
     golang-external-secrets:
       name: golang-external-secrets
@@ -37,7 +39,12 @@ clusterGroup:
       name: pacman-demo
       namespace: pacman-demo
       project: pacman-demo
-      path: charts/all/pacman-demo  
+      path: charts/all/pacman-demo
+    todo-jws:
+      name: todo-jws
+      namespace: todo-jws
+      project: todo-jws
+      path: charts/all/todo-jws
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
