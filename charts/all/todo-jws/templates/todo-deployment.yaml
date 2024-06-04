@@ -8,12 +8,12 @@ spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      deploymentconfig: todo-jws
+      deployment: todo-jws
   template:
     metadata:
       labels:
         app: todo-jws
-        deploymentconfig: todo-jws
+        deployment: todo-jws
       name: todo-jws
     spec:
       containers:
