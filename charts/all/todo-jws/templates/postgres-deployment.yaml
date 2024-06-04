@@ -3,17 +3,17 @@ apiVersion: apps/v1
 metadata:
   name: todos-database
   labels:
-    application: todos-database
+     name: todos-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      deployment: todos-database
+      name: todos-database
   template:
     metadata:
       creationTimestamp: null
       labels:
-        deployment: todos-database
+        name: todos-database
     spec:
       containers:
         - name: postgresql
