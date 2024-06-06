@@ -116,6 +116,10 @@
   loop_control:
     label: "{{ item.key }}"
 
+- name: Debug clusters_info
+  ansible.builtin.debug:
+    msg: "{{ clusters_info | dict2items }}"
+
 - name: Is kubernetes backend already enabled
   no_log: true
   kubernetes.core.k8s_exec:
