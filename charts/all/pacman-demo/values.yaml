@@ -1,5 +1,5 @@
 ---
-#TODO use in templates
+image: quay.io/rh_ee_fcharett/pacman:0.1.0
 restic:
   secret: "restic-secret"
   repository: "gs:restic-backups-rw8ns:/demo-pacman-mongodb-backup"
