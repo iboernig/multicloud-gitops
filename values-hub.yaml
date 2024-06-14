@@ -92,10 +92,10 @@ clusterGroup:
         - name: clusterGroup.isHubCluster
           value: false
     onPrem:
-      name: group-two
+      name: group-base
       acmlabels:
         - name: clusterGroup
-          value: group-two
+          value: group-base
       helmOverrides:
         - name: clusterGroup.isHubCluster
           value: false
