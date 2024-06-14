@@ -1,0 +1,46 @@
+global:
+  options:
+    useCSV: False
+    syncPolicy: Automatic
+    installPlanApproval: Automatic
+  ## the following line is for Disaster Recovery, uncomment as needed
+  restoreAsOf: 2024-06-14T18:30:00-02:00
+clusterGroup:
+  name: group-two
+  isHubCluster: false
+  namespaces:
+    - imperative
+    - golang-external-secrets
+    - pacman
+  subscriptions:
+    volsync:
+      name: volsync-product
+      namespace: openshift-operators
+      channel: stable
+    web-terminal:
+      name: web-terminal
+      namespace: openshift-operators
+      channel: fast  
+  projects:
+    - imperative
+    - eso
+    - pacman
+  applications:
+    golang-external-secrets:
+      name: golang-external-secrets
+      namespace: golang-external-secrets
+      project: eso
+      path: common/golang-external-secrets
+    pacman-demo:
+      name: pacman
+      namespace: pacman
+      project: pacman
+      path: charts/all/pacman-demo
+      extraValueFiles:
+        - /values-group-two.yaml
+  imperative:
+    jobs: []
+  # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
+  # We can use self-referential variables because the chart calls the tpl function with these variables defined
+  sharedValueFiles:
+    - '/overrides/values-{{ $.Values.global.clusterPlatform }}.yaml'
