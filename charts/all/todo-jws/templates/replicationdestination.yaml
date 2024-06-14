@@ -9,6 +9,9 @@ spec:
     repository: {{ .Values.restic.secret }}
     copyMethod: Snapshot
     capacity: {{ .Values.pvc.storage }}
+    {{- if .Values.global.restoreAsOf }}
+    restoreAsOf: {{ .Values.global.restoreAsOf }}
+    {{- end }}
     accessModes:
       - ReadWriteOnce
     cacheCapacity: {{ .Values.restic.cacheCapacity.dest }}

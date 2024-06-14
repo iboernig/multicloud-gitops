@@ -3,6 +3,8 @@ global:
     useCSV: False
     syncPolicy: Automatic
     installPlanApproval: Automatic
+  ## the following line is for Disaster Recovery, uncomment as needed
+  #restoreAsOf: 2024-06-27T10:15:00-02:00
 clusterGroup:
   name: group-one
   isHubCluster: false
