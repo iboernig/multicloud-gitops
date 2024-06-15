@@ -1,0 +1,35 @@
+# install-config
+apiVersion: v1
+metadata:
+  name: 'ocp-gcp'
+baseDomain: rw8ns.gcp.redhatworkshops.io
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+  platform:
+    gcp:
+      type: n1-standard-4
+compute:
+- hyperthreading: Enabled
+  name: 'worker'
+  replicas: 3
+  platform:
+    gcp:
+      type: n1-standard-4
+networking:
+  networkType: OVNKubernetes
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  gcp:
+    projectID: openenv-rw8ns
+    region: europe-west3
+pullSecret: "" # skip, hive will inject based on it's secrets
+sshKey: |-
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCs2ilkkLVbD7WLfHixIv6+gDXAhO98YvyZO730Hzg3AN2aY4ZuRSEiYqHDDTBT67gzZGR2CvKywhiuaGNUXhzYdHg3+udFQzJf/OjW50CxgsYvHn6+UQ0NrVENYUsCn6L6xi7kaz6lQ4Cx4MdH6rjYQk9YGtShSPZBwCOaqpG8hIqXvA+Y4qxYnkXDVHqwSLMZj3NMqOJb19GQtolq6mFRWPdzR66ao0BjUWSx6i077FyCzH3p9Q64c4HKDow83SZltRoGhL+QkaPdLbNjNsFiUC801J0y8XAA2Kfo2rWTcJHFUUTGqJJ/MiGZzkQD6dQzyhQMe3ctbE5Lf6tyXSeJ fch@MacBook-Pro

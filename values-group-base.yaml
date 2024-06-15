@@ -12,10 +12,10 @@ clusterGroup:
     - golang-external-secrets
     #- pacman
   subscriptions:
-    # volsync:
-    #   name: volsync-product
-    #   namespace: openshift-operators
-    #   channel: stable
+    volsync:
+      name: volsync-product
+      namespace: openshift-operators
+      channel: stable
     web-terminal:
       name: web-terminal
       namespace: openshift-operators

@@ -1,0 +1,119 @@
+# cluster
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: 'ocp-gcp'
+  namespace: 'ocp-gcp'
+  labels:
+    cloud: 'GCP'
+    region: 'europe-west3'
+    vendor: OpenShift
+    cluster.open-cluster-management.io/clusterset: 'default'
+spec:
+  baseDomain: rw8ns.gcp.redhatworkshops.io
+  clusterName: 'ocp-gcp'
+  controlPlaneConfig:
+    servingCertificates: {}
+  installAttemptsLimit: 1
+  installed: false
+  platform:
+    gcp:
+      credentialsSecretRef:
+        name: ocp-gcp-gcp-creds
+      region: europe-west3
+  provisioning:
+    installConfigSecretRef:
+      name: ocp-gcp-install-config
+    sshPrivateKeySecretRef:
+      name: ocp-gcp-ssh-private-key
+    imageSetRef:
+       #quay.io/openshift-release-dev/ocp-release:4.15.14-multi
+      name: img4.15.14-multi-appsub
+  pullSecretRef:
+    name: ocp-gcp-pull-secret
+---
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  labels:
+    cloud: Google
+    region: europe-west3
+    name: 'ocp-gcp'
+    vendor: OpenShift
+    cluster.open-cluster-management.io/clusterset: 'default'
+  name: 'ocp-gcp'
+spec:
+  hubAcceptsClient: true
+---
+apiVersion: hive.openshift.io/v1
+kind: MachinePool
+metadata:
+  name: ocp-gcp-worker
+  namespace: 'ocp-gcp'
+spec:
+  clusterDeploymentRef:
+    name: 'ocp-gcp'
+  name: worker
+  platform:
+    gcp:
+      type: n1-standard-4
+  replicas: 3
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ocp-gcp-pull-secret
+  namespace: 'ocp-gcp'
+stringData:
+  .dockerconfigjson: # injected on create
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ocp-gcp-install-config
+  namespace: 'ocp-gcp'
+type: Opaque
+data:
+  # Base64 encoding of install-config yaml
+  install-config.yaml: YXBpVmVyc2lvbjogdjEKbWV0YWRhdGE6CiAgbmFtZTogJ29jcC1nY3AnCmJhc2VEb21haW46IHJ3OG5zLmdjcC5yZWRoYXR3b3Jrc2hvcHMuaW8KY29udHJvbFBsYW5lOgogIGh5cGVydGhyZWFkaW5nOiBFbmFibGVkCiAgbmFtZTogbWFzdGVyCiAgcmVwbGljYXM6IDMKICBwbGF0Zm9ybToKICAgIGdjcDoKICAgICAgdHlwZTogbjEtc3RhbmRhcmQtNApjb21wdXRlOgotIGh5cGVydGhyZWFkaW5nOiBFbmFibGVkCiAgbmFtZTogJ3dvcmtlcicKICByZXBsaWNhczogMwogIHBsYXRmb3JtOgogICAgZ2NwOgogICAgICB0eXBlOiBuMS1zdGFuZGFyZC00Cm5ldHdvcmtpbmc6CiAgbmV0d29ya1R5cGU6IE9WTkt1YmVybmV0ZXMKICBjbHVzdGVyTmV0d29yazoKICAtIGNpZHI6IDEwLjEyOC4wLjAvMTQKICAgIGhvc3RQcmVmaXg6IDIzCiAgbWFjaGluZU5ldHdvcms6CiAgLSBjaWRyOiAxMC4wLjAuMC8xNgogIHNlcnZpY2VOZXR3b3JrOgogIC0gMTcyLjMwLjAuMC8xNgpwbGF0Zm9ybToKICBnY3A6CiAgICBwcm9qZWN0SUQ6IG9wZW5lbnYtcnc4bnMKICAgIHJlZ2lvbjogZXVyb3BlLXdlc3QzCnB1bGxTZWNyZXQ6ICIiICMgc2tpcCwgaGl2ZSB3aWxsIGluamVjdCBiYXNlZCBvbiBpdCdzIHNlY3JldHMKc3NoS2V5OiB8LQogICAgc3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDczJpbGtrTFZiRDdXTGZIaXhJdjYrZ0RYQWhPOThZdnlaTzczMEh6ZzNBTjJhWTRadVJTRWlZcUhERFRCVDY3Z3paR1IyQ3ZLeXdoaXVhR05VWGh6WWRIZzMrdWRGUXpKZi9Palc1MEN4Z3NZdkhuNitVUTBOclZFTllVc0NuNkw2eGk3a2F6NmxRNEN4NE1kSDZyallRazlZR3RTaFNQWkJ3Q09hcXBHOGhJcVh2QStZNHF4WW5rWERWSHF3U0xNWmozTk1xT0piMTlHUXRvbHE2bUZSV1BkelI2NmFvMEJqVVdTeDZpMDc3RnlDekgzcDlRNjRjNEhLRG93ODNTWmx0Um9HaEwrUWthUGRMYk5qTnNGaVVDODAxSjB5OFhBQTJLZm8ycldUY0pIRlVVVEdxSkovTWlHWnprUUQ2ZFF6eWhRTWUzY3RiRTVMZjZ0eVhTZUogZmNoQE1hY0Jvb2stUHJvCg==
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ocp-gcp-ssh-private-key
+  namespace: 'ocp-gcp'
+stringData:
+  ssh-privatekey: # injected on create
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: ocp-gcp-gcp-creds
+  namespace: 'ocp-gcp'
+stringData:
+  osServiceAccount.json: # injected on create
+---
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: 'ocp-gcp'
+  namespace: 'ocp-gcp'
+spec:
+  clusterName: 'ocp-gcp'
+  clusterNamespace: 'ocp-gcp'
+  clusterLabels:
+    cloud: Google
+    vendor: OpenShift
+  applicationManager:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: true
+  certPolicyController:
+    enabled: true
+  iamPolicyController:
+    enabled: true
