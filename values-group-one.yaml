@@ -9,11 +9,7 @@ clusterGroup:
   name: group-one
   isHubCluster: false
   namespaces:
-    - imperative
-    - config-demo
-    - hello-world
-    - golang-external-secrets
-    - pacman-demo
+    - pacman
     - todo-jws
   subscriptions:
     volsync:
@@ -25,32 +21,13 @@ clusterGroup:
       namespace: openshift-operators
       channel: fast  
   projects:
-    - imperative
-    - eso
-    - config-demo
-    - hello-world
-    - pacman-demo
+    - pacman
     - todo-jws
   applications:
-    golang-external-secrets:
-      name: golang-external-secrets
-      namespace: golang-external-secrets
-      project: eso
-      path: common/golang-external-secrets
-    config-demo:
-      name: config-demo
-      namespace: config-demo
-      project: config-demo
-      path: charts/all/config-demo
-    hello-world:
-      name: hello-world
-      namespace: hello-world
-      project: hello-world
-      path: charts/all/hello-world
     pacman-demo:
-      name: pacman-demo
-      namespace: pacman-demo
-      project: pacman-demo
+      name: pacman
+      namespace: pacman
+      project: pacman
       path: charts/all/pacman-demo
       extraValueFiles:
         - /values-group-one.yaml
@@ -68,13 +45,13 @@ clusterGroup:
     # imagePullPolicy is set to always: imperative.imagePullPolicy
     # For additional overrides that apply to the jobs, please refer to
     # https://hybrid-cloud-patterns.io/imperative-actions/#additional-job-customizations
-    jobs:
-      - name: hello-world
-        # ansible playbook to be run
-        playbook: common/ansible/playbooks/hello-world/hello-world.yaml
-        # per playbook timeout in seconds
-        timeout: 234
-        # verbosity: "-v"
+    jobs: []
+      # - name: hello-world
+        # # ansible playbook to be run
+        # playbook: common/ansible/playbooks/hello-world/hello-world.yaml
+        # # per playbook timeout in seconds
+        # timeout: 234
+        # # verbosity: "-v"
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:

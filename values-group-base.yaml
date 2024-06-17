@@ -3,14 +3,13 @@ global:
     useCSV: False
     syncPolicy: Automatic
     installPlanApproval: Automatic
-  ## the following line is for Disaster Recovery, uncomment as needed
-  #restoreAsOf: 2024-06-14T18:30:00-02:00
 clusterGroup:
   name: group-base
   isHubCluster: false
   namespaces:
     - golang-external-secrets
-    #- pacman
+    - hello-world
+    - config-demo
   subscriptions:
     volsync:
       name: volsync-product
@@ -22,22 +21,32 @@ clusterGroup:
       channel: fast
   projects:
     - eso
-    #- pacman
+    - hello-world
+    - config-demo
   applications:
     golang-external-secrets:
       name: golang-external-secrets
       namespace: golang-external-secrets
       project: eso
-      path: common/golang-external-secrets
-    # pacman:
-    #   name: pacman
-    #   namespace: pacman
-    #   project: pacman
-    #   path: charts/all/pacman-demo
-    #   extraValueFiles:
-    #     - /values-group-base.yaml
+      path: common/golang-external-secrets 
+    hello-world:
+      name: hello-world
+      namespace: hello-world
+      project: hello-world
+      path: charts/all/hello-world
+    config-demo:
+      name: config-demo
+      namespace: config-demo
+      project: config-demo
+      path: charts/all/config-demo
   imperative:
-    jobs: []
+    jobs: 
+      - name: hello-world
+        # ansible playbook to be run
+        playbook: common/ansible/playbooks/hello-world/hello-world.yaml
+        # per playbook timeout in seconds
+        timeout: 234
+        # verbosity: "-v"
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
