@@ -5,13 +5,15 @@ metadata:
 spec:
   sourcePVC: postgres-storage
   trigger:
-    schedule: "*/20 * * * *"
+    #schedule: "*/20 * * * *"
+    manual: "backup-once"
   restic:
     pruneIntervalDays: 1
     repository: {{ .Values.restic.secret }}
     retain:
-      hourly: 3
-      daily: 2
+      within: 3h
+      hourly: 12
+      daily: 30
       monthly: 1
     copyMethod: Snapshot
     cacheCapacity: {{ .Values.restic.cacheCapacity.source }}
