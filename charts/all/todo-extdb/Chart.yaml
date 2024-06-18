@@ -1,0 +1,6 @@
+apiVersion: v2
+description: A Helm chart for a simple SpringBoot TodoMVC app running on JBoss Web Server
+keywords:
+- pattern
+name: todo-extdb
+version: 0.0.1
