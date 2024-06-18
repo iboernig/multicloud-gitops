@@ -23,7 +23,13 @@ spec:
         volumeMounts:
           - name: mongo-db
             mountPath: /bitnami/mongodb/data/db
+          - name: init-script
+            mountPath: /tmp/init-mongo.js
+            subPath: init-mongo.js
       volumes:
         - name: mongo-db
           persistentVolumeClaim:
             claimName: mongo-storage
+        - name: init-script
+          configMap:
+            name: init-mongo
