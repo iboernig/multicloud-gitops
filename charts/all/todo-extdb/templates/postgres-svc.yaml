@@ -11,7 +11,5 @@ spec:
     targetPort: 5432
     protocol: TCP
   internalTrafficPolicy: Cluster
-  selector:
-    name: todos-database
   sessionAffinity: None
   type: ClusterIP

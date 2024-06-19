@@ -15,14 +15,6 @@ spec:
         name: todo-extdb
       name: todo-extdb
     spec:
-      initContainers:
-      - name: wait-for-postgres
-        image: quay.io/rh_ee_fcharett/ubi-netcat:latest
-        command: ['sh', '-c', 'until nc -z todos-database 5432; do echo waiting for todos-database; sleep 5; done;']
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop: [ALL]
       containers:
       - name: todo-demo-jws
         image: {{ .Values.image }}
