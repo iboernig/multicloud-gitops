@@ -11,6 +11,7 @@ clusterGroup:
   namespaces:
     - pacman
     - todo-jws
+    - todo-extdb
   subscriptions:
     volsync:
       name: volsync-product
@@ -23,6 +24,7 @@ clusterGroup:
   projects:
     - pacman
     - todo-jws
+    - todo-extdb
   applications:
     pacman-demo:
       name: pacman
@@ -36,6 +38,13 @@ clusterGroup:
       namespace: todo-jws
       project: todo-jws
       path: charts/all/todo-jws
+      extraValueFiles:
+        - /values-group-one.yaml
+    todo-extdb:
+      name: todo-extdb
+      namespace: todo-extdb
+      project: todo-extdb
+      path: charts/all/todo-extdb
       extraValueFiles:
         - /values-group-one.yaml
   imperative:
