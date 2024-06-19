@@ -1,4 +1,4 @@
 ---
-image: quay.io/rh_ee_fcharett/todo-demo-jws
+image: quay.io/rh_ee_fcharett/todo-demo-jws-truck
 replicas: 2
 ip: 192.168.50.92
