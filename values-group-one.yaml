@@ -4,7 +4,7 @@ global:
     syncPolicy: Automatic
     installPlanApproval: Automatic
   ## the following line is for Disaster Recovery, uncomment as needed
-  #restoreAsOf: "2024-06-27T11:00:00Z"
+  restoreAsOf: "2024-06-27T08:08:00Z" # !!! THIS IS UTC !!!
 clusterGroup:
   name: group-one
   isHubCluster: false
