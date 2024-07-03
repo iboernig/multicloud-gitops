@@ -1,5 +1,10 @@
 ---
-image: quay.io/rh_ee_fcharett/pacman:0.1.0
+image: quay.io/rh_ee_fcharett/pacman:0.1.4
+# ClusterRole to be bound to the service account in order to access the k8s REST API from the pod
+clusterRole: cluster-reader
+mongo:
+  image: bitnami/mongodb:5.0.24
+  mountPath: /bitnami/mongodb/data/db
 restic:
   secret: "restic-secret"
   repository: "gs:restic-backups-rw8ns:/demo-pacman-mongodb-backup"
