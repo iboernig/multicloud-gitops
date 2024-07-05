@@ -1,5 +1,5 @@
 ---
-image: quay.io/rh_ee_fcharett/pacman:0.1.4
+image: quay.io/rh_ee_fcharett/pacman:0.1.5
 # ClusterRole to be bound to the service account in order to access the k8s REST API from the pod
 clusterRole: cluster-reader
 mongo:
