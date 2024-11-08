@@ -10,8 +10,8 @@ clusterGroup:
   isHubCluster: false
   namespaces:
     - pacman
-#    - todo-jws
-#    - todo-extdb
+    # - todo-jws
+    # - todo-extdb
   subscriptions:
     volsync:
       name: volsync-product
@@ -23,8 +23,8 @@ clusterGroup:
       channel: fast  
   projects:
     - pacman
- #   - todo-jws
- #   - todo-extdb
+    # - todo-jws
+    # - todo-extdb
   applications:
     pacman-demo:
       name: pacman
@@ -33,20 +33,20 @@ clusterGroup:
       path: charts/all/pacman-demo
       extraValueFiles:
         - /values-group-one.yaml
-#    todo-jws:
-#      name: todo-jws
-#      namespace: todo-jws
-#      project: todo-jws
-#      path: charts/all/todo-jws
-#      extraValueFiles:
-#        - /values-group-one.yaml
-#    todo-extdb:
-#      name: todo-extdb
-#      namespace: todo-extdb
-#      project: todo-extdb
-#      path: charts/all/todo-extdb
-#      extraValueFiles:
-#        - /values-group-one.yaml
+  #  todo-jws:
+  #    name: todo-jws
+  #    namespace: todo-jws
+  #    project: todo-jws
+  #    path: charts/all/todo-jws
+  #    extraValueFiles:
+  #      - /values-group-one.yaml
+  #  todo-extdb:
+  #    name: todo-extdb
+  #    namespace: todo-extdb
+  #    project: todo-extdb
+  #    path: charts/all/todo-extdb
+  #    extraValueFiles:
+  #      - /values-group-one.yaml
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
