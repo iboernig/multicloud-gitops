@@ -7,7 +7,7 @@ mongo:
   mountPath: /bitnami/mongodb/data/db
 restic:
   secret: "restic-secret"
-  repository: "gs:restic-backups-rw8ns:/demo-pacman-mongodb-backup"
+  repository: "gs:restic-backups-lhf6s:/demo-pacman-mongodb-backup"
   cacheCapacity:
     source: 1Gi
     dest: 1Gi
