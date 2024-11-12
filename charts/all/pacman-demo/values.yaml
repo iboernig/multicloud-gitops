@@ -7,7 +7,7 @@ mongo:
   mountPath: /bitnami/mongodb/data/db
 restic:
   secret: "restic-secret"
-  repository: "gs:restic-backups-rw8ns:/demo-pacman-mongodb-backup"
+  repository: "s3:https://s3.amazonaws.com/pacman-demo-backup"
   cacheCapacity:
     source: 1Gi
     dest: 1Gi
@@ -16,4 +16,4 @@ pvc:
 secretStore:
   name: vault-backend
   kind: ClusterSecretStore
-  path: "secret/data/global/gcp-restic-secret"
+  path: "secret/data/global/aws-restic-secret"
