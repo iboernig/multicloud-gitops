@@ -15,14 +15,14 @@ spec:
         name: mongo
     spec:
       containers:
-      - image: bitnami/mongodb:5.0.14
+      - image: {{ .Values.mongo.image }}
         name: mongo
         ports:
         - name: mongo
           containerPort: 27017
         volumeMounts:
           - name: mongo-db
-            mountPath: /bitnami/mongodb/data/db
+            mountPath: {{ .Values.mongo.mountPath }}
           - name: init-script
             mountPath: /tmp/init-mongo.js
             subPath: init-mongo.js
