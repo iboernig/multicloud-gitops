@@ -33,13 +33,13 @@ clusterGroup:
       path: charts/all/pacman-demo
       extraValueFiles:
         - /values-group-one.yaml
-  #  todo-jws:
-  #    name: todo-jws
-  #    namespace: todo-jws
-  #    project: todo-jws
-  #    path: charts/all/todo-jws
-  #    extraValueFiles:
-  #      - /values-group-one.yaml
+    todo-jws:
+      name: todo-jws
+      namespace: todo-jws
+      project: todo-jws
+      path: charts/all/todo-jws
+      extraValueFiles:
+        - /values-group-one.yaml
   #  todo-extdb:
   #    name: todo-extdb
   #    namespace: todo-extdb
