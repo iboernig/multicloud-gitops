@@ -12,7 +12,7 @@ restic:
     source: 1Gi
     dest: 1Gi
 pvc:
-  storage: 8Gi 
+  storage: 8Gi
 secretStore:
   name: vault-backend
   kind: ClusterSecretStore

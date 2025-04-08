@@ -8,7 +8,7 @@ database:
   password: jws
 restic:
   secret: "restic-secret"
-  repository: "gs:restic-backups-rw8ns:/demo-todos-postgres-backup"
+  repository: "gs:restic-backups-lhf6s:/demo-todos-postgres-backup"
   cacheCapacity:
     source: 1Gi
     dest: 1Gi
